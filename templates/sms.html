@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spam Vs Ham Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <style>
+      [type='file'] {
+      height: 0;
+      overflow: hidden;
+      width: 0;
+    }
+
+[type='file'] + label {
+  background: #f15d22;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: inherit;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  vertical-align: middle;
+}
+[type='file'] + label:hover {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#8714ec),
+    to(#c214e0)
+  );
+  background-image: -o-linear-gradient(bottom, #8714ec, #c214e0);
+  background-image: linear-gradient(to top, #8714ec, #c214e0);
+}
+[type='file'] + label.btn-3 {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#b87eec),
+    to(#d383e2)
+  );
+  background-image: -o-linear-gradient(bottom, #b87eec, #d383e2);
+  background-image: linear-gradient(to top, #b87eec, #d383e2);
+  border-radius: 0;
+  overflow: hidden;
+}
+[type='file'] + label.btn-3 span {
+  display: inline-block;
+  height: 100%;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+}
+[type='file'] + label.btn-3::before {
+  color: #fff;
+  font-family: 'Font Awesome 5 Free';
+  content: '\f382';
+  font-size: 130%;
+  height: 100%;
+  left: 0;
+  line-height: 2.6;
+  position: absolute;
+  top: -180%;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+}
+[type='file'] + label.btn-3:hover {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#b87eec),
+    to(#d383e2)
+  );
+  background-image: -o-linear-gradient(bottom, #b87eec, #d383e2);
+  background-image: linear-gradient(to top, #b87eec, #d383e2);
+}
+[type='file'] + label.btn-3:hover span {
+  -webkit-transform: translateY(300%);
+  -ms-transform: translateY(300%);
+  transform: translateY(300%);
+}
+[type='file'] + label.btn-3:hover::before {
+  top: 0;
+}
+    </style>
+  </head>
+  <body>
+    <header class="header-section">
+      <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 col-lg-4 text-center mt-4 text-section" style="display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;">
+          <h1 class="mb-4"><u>SPAM VS. HAM DETECTION</u></h1>
+          <div class="row mb-4 mt-4">
+            <div class="col-sm-12 container" style="text-align: center;">
+              <form action = "http://localhost:5000/predict" method = "POST" enctype = "multipart/form-data">
+                  <div class="row">
+                    <div class="col-12">
+                      <input type='file' name='file' id="file" multiple=''>
+                      <label for="file" class="btn-3"><span>Choose File</span></label>
+                    </div>
+                    <div class="col-12" style="margin-top: 10px;">
+                      <input type='submit' value='upload' style=" outline: none;
+                      border: none;
+                      background-image: linear-gradient(to top, #8714ec, #c214e0);
+                      color: white;
+                      padding: 10px 50px;
+                      border-radius: 100px;
+                      text-transform: uppercase;">
+                    </div>
+                  </div>
+              </form>
+              {% if  prediction == 'ham' %}
+                    
+                <div class="mt-4">
+                  <h1>HAM</h1>
+                </div>
+
+                {% elif prediction == 'spam' %}
+                <div class="mt-4">
+                  <h1>SPAM</h1>
+                </div>
+
+                {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8">
+          <img src="{{imageurl}}" alt="spam" class="bg-img" />
+        </div>
+      </div>
+    </header>
+    <script
+      src="https://kit.fontawesome.com/abae74555f.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  </html>
