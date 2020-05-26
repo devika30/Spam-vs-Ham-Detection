@@ -1,6 +1,6 @@
 # SPAM AND HAM DETECTION 
-A dataset is used which contains random files of spam and ham,that uses feature vectorization for processing the data before sending it to model.For model prediction we used **Naive Bayes Classifier** which gave the accuracy around **96%**.For actual implementation **Flask** is used for GUI. 
-The total number of data is 3112
+A dataset is used which contains random files of spam and ham,that uses feature vectorization for processing the data before sending it to model.For model prediction we used **Naive Bayes Classifier** which gave the accuracy around **96%**.For actual implementation **Flask** is used. 
+
 | SPAM          | HAM           | TOTAL  |
 | ------------- |:-------------:| -----: |
 | 1556          |1556           | 3112   |
